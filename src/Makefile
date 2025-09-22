@@ -21,7 +21,7 @@ tokenizer: $(OBJS)
 
 #clean files
 clean:
-	rm -f *.o asciidraw *~ \#*#
+	rm -f *.o tokenizer *~ \#*#
 
 #run
 run: tokenizer
