@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "history.h"
-#include "tokenizer.c"
+#include "tokenizer.h"
 
 List *init_history(){
   List *list = (List *)malloc(sizeof(List));//memory allocation of new list

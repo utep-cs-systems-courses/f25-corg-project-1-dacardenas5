@@ -14,10 +14,11 @@ all: tokenizer
 #build executable
 
 tokenizer: $(OBJS)
-	cc -o tokenizer $(CFLAGS) $(OBJS)
+	cc $(CFLAGS) -o tokenizer $(OBJS)
 
-#shared header
-$(OBJS): tokenizer.h history.h
+uiMain.o: tokenizer.h history.h
+tokenizer.o: tokenizer.h
+history.o: tokenizer.h history.h
 
 #clean files
 clean:

@@ -1,7 +1,10 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include "tokenizer.h"
 #include "history.h"
+
+int str_equal(const char *a,const char *b);
+void remove_newline(char *s);
 
 int main(){
 
@@ -36,7 +39,7 @@ int main(){
 	print_tokens(tokens);
 	free_tokens(tokens);
       } else {
-	printf("ID inputted has no history");
+	printf("ID inputted has no history\n");
       }
       continue;
     }
@@ -60,7 +63,7 @@ int str_equal(const char *a, const char*b){
     }
     i++;
   }
-  return (a[i]=='\0' && b[i] == '0');//final is the same
+  return (a[i]=='\0' && b[i] == '\0');//final is the same
 }
 
 void remove_newline(char *s){
