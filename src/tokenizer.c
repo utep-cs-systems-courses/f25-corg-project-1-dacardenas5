@@ -26,7 +26,7 @@ char *token_terminator(char *token){
 
 int count_tokens(char *str){
   int count = 0;
-  char *pointer = *str;
+  char *pointer = str;
   while((pointer = token_start(pointer))){//makes pointer the start of word
       count++;
       pointer = token_terminator(pointer);//sets pointer the end of word
