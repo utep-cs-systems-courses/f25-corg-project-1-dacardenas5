@@ -27,7 +27,7 @@ char *token_terminator(char *token){
 int count_tokens(char *str){
   int count = 0;
   char *pointer = *str;
-  while((pointer = token_start(pointer)){//makes pointer the start of word
+  while((pointer = token_start(pointer))){//makes pointer the start of word
       count++;
       pointer = token_terminator(pointer);//sets pointer the end of word
   }
@@ -41,4 +41,33 @@ char *copy_str(char *inStr, short len){
   }
   copy[len] = '\0';//add the zero terminator at the end of the copy
   return copy;
+}
+
+char **tokenize(char *s){//returns array of strings (tokens)
+ int amountTokens = count_tokens(s);//gets the amount of tokens
+ char **arr = (char **)malloc((amountTokens+1) * sizeof(char *));//each is a string & has end 
+ int i = 0;
+ char *p = s;//copy to not mess up s
+
+ while((p = token_start(p))){//start of each token
+     char *tokenEnd = token_terminator(p);//end of curr token
+     arr[i] = copy_str(p,(tokenEnd-p));//sets the array to the token string
+     i++;
+     p = tokenEnd;//sets up for the next start
+ }
+ arr[i] = NULL;//the end is null so we know its done tokenizing
+ return arr;
+}
+
+void print_tokens(char **tokens){
+  for(int i = 0;tokens[i];i++){//till its null
+    printf("%s \n",tokens[i]);
+  }
+}
+
+void free_tokens(char **tokens){
+  for(int i = 0; tokens[i]; i++){
+    free(tokens[i]);
+  }
+  free(tokens);
 }

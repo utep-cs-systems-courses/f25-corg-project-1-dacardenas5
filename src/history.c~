@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "history.h"
+#include "tokenizer.c"
+
+List *init_history(){
+  List *list = (List *)malloc(sizeof(List));//memory allocation of new list
+  list->head = NULL;//the start has nothing
+  list->size = 0;//the size is nothing
+  return list;//return the start of the list
+}
+
+void add_history(List *list,char *str){
+  Item *item = (Item *)malloc(sizeof(Item));//memory allocation of new item
+  item->id = list->size + 1;//id is of the next item
+
+  int strLength = 0;
+  while(str[strLength]!= '\0'){//gets the length of the string
+    strLength++;
+  }
+  item->str = copy_str(str,strLength);  //copies the string
+  item->next = list->head;//doesnt have a next so null
+  
+  list->head = item;//head is now the new item
+  list->size++;//increase size
+}
+
+char *get_history(List *list,int id){
+  Item *curr = list->head;
+  while(curr){
+    if(curr->id == id){//loops until it matches the id
+      return curr->str;
+    }
+  }
+  return NULL;
+}
+
+void print_history(List *list){//prints the id and then the string
+  Item *curr = list-> head;d
+  while(curr){
+    printf("%d: %s\n",curr->id,curr->str);
+    curr = curr->next;
+  }
+}
+
+void free_history(List *list){//temp keeps track of the curr
+  Item *curr = list->head;
+  while(curr){
+    Item *temp = curr;
+    curr = curr->next;
+    free(temp->str);
+    free(temp);
+  }
+  free(list);
+}
+  

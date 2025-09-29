@@ -1,7 +1,7 @@
 
 #object files
 
-OBJS = uiMain.o
+OBJS = uiMain.o tokenizer.o history.o
 
 #compiler flags
 
@@ -17,7 +17,7 @@ tokenizer: $(OBJS)
 	cc -o tokenizer $(CFLAGS) $(OBJS)
 
 #shared header
-# $(OBJS): sharedHeader.h
+$(OBJS): tokenizer.h history.h
 
 #clean files
 clean:
